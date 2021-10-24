@@ -1,0 +1,4 @@
+Django==3.2.8
+social-auth-app-django==5.0.0
+python-jose==3.3.0
+python-dotenv==0.19.1
