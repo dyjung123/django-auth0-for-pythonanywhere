@@ -19,24 +19,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x2ppcsn(c05tw&9%4$1#d4p&p*7lj#6s0l1z#b-8#ncj^-uczd'
-
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = []
 
 SOCIAL_AUTH_TRAILING_SLASH = False
-SOCIAL_AUTH_AUTH0_DOMAIN = 'dev-etwnehkl.us.auth0.com'
-SOCIAL_AUTH_AUTH0_KEY = ''
-SOCIAL_AUTH_AUTH0_SECRET = ''
+SOCIAL_AUTH_AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
+SOCIAL_AUTH_AUTH0_KEY = os.environ.get("AUTH0_CLIENT_ID")
+SOCIAL_AUTH_AUTH0_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")
 
 SOCIAL_AUTH_AUTH0_SCOPE = [
     'openid',
     'profile',
     'email'
 ]
+
+AUTHENTICATION_BACKENDS = {
+    'auth0login.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend'
+}
+
+LOGIN_URL = '/login/auth0'
+LOGIN_REDIRECT_URL = '/dashboard'
 
 # Application definition
 
