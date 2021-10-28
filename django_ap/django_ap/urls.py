@@ -15,13 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from auth0login import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('dashboard', views.dashboard),
-    path('logout', views.logout),
-    path('', include('django.contrib.auth.urls')),
-    path('', include('social_django.urls')),
+    path('', include('auth0login.urls'))
 ]
